@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialHub - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">SocialHub</div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-icons">
+                <a href="#" class="nav-icon">🏠 Home</a>
+                <a href="#" class="nav-icon">🔔 Notifications</a>
+                <a href="#" class="nav-icon">💬 Messages</a>
+                <a href="#" class="nav-icon">👤 Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="user-card">
+                <div class="user-avatar">👤</div>
+                <h3>John Doe</h3>
+                <p>@johndoe</p>
+                <div class="user-stats">
+                    <div class="stat">
+                        <span class="stat-count">1,234</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-count">567</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+                <button class="edit-profile-btn">Edit Profile</button>
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <a href="#" class="quick-link">📸 Photos</a>
+                <a href="#" class="quick-link">🎥 Videos</a>
+                <a href="#" class="quick-link">❤️ Likes</a>
+                <a href="#" class="quick-link">⚙️ Settings</a>
+            </div>
+        </aside>
+
+        <!-- Feed Section -->
+        <main class="feed">
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="post-header">
+                    <div class="post-avatar">👤</div>
+                    <input type="text" placeholder="What's on your mind?" class="post-input">
+                </div>
+                <div class="post-actions">
+                    <button class="post-action-btn">📷 Photo</button>
+                    <button class="post-action-btn">😊 Emoji</button>
+                    <button class="post-action-btn" id="postBtn">Post</button>
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            <div id="feed-container" class="feed-container">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="trends">
+                <h3>Trending Now</h3>
+                <div class="trend-item">
+                    <span class="trend-tag">#Technology</span>
+                    <span class="trend-count">125K posts</span>
+                </div>
+                <div class="trend-item">
+                    <span class="trend-tag">#WebDevelopment</span>
+                    <span class="trend-count">89K posts</span>
+                </div>
+                <div class="trend-item">
+                    <span class="trend-tag">#JavaScript</span>
+                    <span class="trend-count">56K posts</span>
+                </div>
+                <div class="trend-item">
+                    <span class="trend-tag">#Design</span>
+                    <span class="trend-count">43K posts</span>
+                </div>
+                <div class="trend-item">
+                    <span class="trend-tag">#AI</span>
+                    <span class="trend-count">102K posts</span>
+                </div>
+            </div>
+
+            <div class="suggestions">
+                <h3>Suggested For You</h3>
+                <div id="suggestions-container" class="suggestions-container">
+                    <!-- Suggestions will be dynamically inserted here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

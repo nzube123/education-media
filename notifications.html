@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - SocialHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notifications.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">SocialHub</a></div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="nav-icon">🏠 Home</a>
+                <a href="notifications.html" class="nav-icon active">🔔 Notifications</a>
+                <a href="messages.html" class="nav-icon">💬 Messages</a>
+                <a href="profile.html" class="nav-icon">👤 Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="notification-filters">
+                <h3>Filters</h3>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="likes">Likes</button>
+                <button class="filter-btn" data-filter="comments">Comments</button>
+                <button class="filter-btn" data-filter="follows">Follows</button>
+                <button class="filter-btn" data-filter="mentions">Mentions</button>
+            </div>
+        </aside>
+
+        <!-- Feed Section -->
+        <main class="feed">
+            <div class="notifications-header">
+                <h1>Notifications</h1>
+                <button class="mark-all-btn">Mark all as read</button>
+            </div>
+
+            <div id="notifications-container" class="notifications-container">
+                <!-- Notifications will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="notification-stats">
+                <h3>Activity</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Unread</span>
+                    <span id="unread-count" class="stat-count">8</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total This Week</span>
+                    <span class="stat-count">42</span>
+                </div>
+                <button class="settings-btn">Notification Settings</button>
+            </div>
+        </aside>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="notifications.js"></script>
+</body>
+</html>

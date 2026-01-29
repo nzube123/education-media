@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SocialHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">SocialHub</a></div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="nav-icon">🏠 Home</a>
+                <a href="notifications.html" class="nav-icon">🔔 Notifications</a>
+                <a href="messages.html" class="nav-icon">💬 Messages</a>
+                <a href="profile.html" class="nav-icon active">👤 Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-banner">
+            <div class="banner-image"></div>
+        </div>
+        <div class="profile-info-container">
+            <div class="profile-avatar-large">👤</div>
+            <div class="profile-details">
+                <div class="profile-name-section">
+                    <h1>John Doe</h1>
+                    <p class="profile-handle">@johndoe</p>
+                </div>
+                <p class="profile-bio">Full-stack developer | Tech enthusiast | Coffee lover ☕ | Always learning something new</p>
+                <div class="profile-meta">
+                    <span>📍 San Francisco, CA</span>
+                    <span>🔗 www.johndoe.com</span>
+                    <span>📅 Joined March 2020</span>
+                </div>
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <span class="stat-number">234</span>
+                        <span class="stat-label">Posts</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-number">1.2K</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-number">567</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="edit-btn">Edit Profile</button>
+                    <button class="share-btn">Share Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="quick-links">
+                <h3>Navigation</h3>
+                <a href="#posts" class="quick-link active-tab" data-tab="posts">📝 Posts</a>
+                <a href="#media" class="quick-link" data-tab="media">📷 Media</a>
+                <a href="#likes" class="quick-link" data-tab="likes">❤️ Likes</a>
+                <a href="settings.html" class="quick-link">⚙️ Settings</a>
+            </div>
+        </aside>
+
+        <!-- Feed Section -->
+        <main class="feed">
+            <!-- Posts Tab -->
+            <div id="posts-tab" class="tab-content active">
+                <h2>Posts</h2>
+                <div id="user-posts" class="feed-container">
+                    <!-- User's posts will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Media Tab -->
+            <div id="media-tab" class="tab-content">
+                <h2>Media Gallery</h2>
+                <div class="media-gallery">
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+1" alt="Photo">
+                    </div>
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+2" alt="Photo">
+                    </div>
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+3" alt="Photo">
+                    </div>
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+4" alt="Photo">
+                    </div>
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+5" alt="Photo">
+                    </div>
+                    <div class="media-item">
+                        <img src="https://via.placeholder.com/300x300?text=Photo+6" alt="Photo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Likes Tab -->
+            <div id="likes-tab" class="tab-content">
+                <h2>Liked Posts</h2>
+                <div id="liked-posts" class="feed-container">
+                    <!-- Liked posts will be loaded here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="suggestions">
+                <h3>Suggested For You</h3>
+                <div id="suggestions-container" class="suggestions-container">
+                    <!-- Suggestions will be loaded here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
