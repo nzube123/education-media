@@ -277,6 +277,21 @@ body {
     background-color: var(--border-color);
 }
 
+.post-duration-button {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+.post-duration-button:hover {
+    background-color: var(--border-color);
+}
+
 #postBtn {
     background-color: var(--primary-color);
     color: var(--white);
