@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocialHub - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/collective.folder.css/styles.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -62,8 +62,16 @@
                     <input type="text" placeholder="What's on your mind?" class="post-input">
                 </div>
                 <div class="post-actions">
-                    <button class="post-duration-button">Set Duration</button>
-                    <button class="post-action-btn">📷 Photo</button>
+                <label for="duration">Set-duration:</label>
+                    <select id="duration">
+                        <option value="1800">30 Minutes</option>
+                        <option value="3600">1 Hour</option>
+                        <option value="86400">24 Hours</option>
+                        <option value="604800">1 Week</option>
+                        <option value="1209600">2 Weeks</option>
+                        <option value="2592000">1 Month</option>
+                    </select>
+                                        <button class="post-action-btn">📷 Photo</button>
                     <button class="post-action-btn">😊 Emoji</button>
                     <button class="post-action-btn" id="postBtn">Post</button>
                 </div>
@@ -110,7 +118,6 @@
         </aside>
     </div>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script src="/collective.folder.js/data.js"></script>
+    <script src="/collective.folder.js/script.js"></script>
 </body>
-</html>

@@ -16,11 +16,59 @@ function loadFeed() {
     });
 }
 
+  
+
 // Create a post card element
 function createPostCard(post) {
     const postCard = document.createElement('div');
     postCard.className = 'post-card';
     postCard.dataset.postId = post.id;
+    
+   /* window.onload = function() {
+    const savedPosts = JSON.parse(localStorage.getItem('post-card')) || [];
+    const now = Date.now();
+    
+    const activePosts = savedPosts.filter(post => post.expiryTime > now);
+
+    localStorage.setItem('post-card', JSON.stringify(activePosts));
+    activePosts.forEach(post => displayPost(post.text, post.expiryTime));
+};
+    function createPost() {
+    const postText = document.getElementById('postInput').value;
+    const duration = parseInt(document.getElementById('duration').value);
+    const expiryTime = Date.now() + (duration * 1000);
+    const savedPosts = JSON.parse(localStorage.getItem('post-card')) || [];
+    savedPosts.push({ text: postText, expiryTime: expiryTime });
+    localStorage.setItem('post-card', JSON.stringify(savedPosts));
+    displayPost(postText, expiryTime);
+}
+    function displayPost(text, expiryTime) {
+    const feed = document.getElementById('feed');
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post';
+    postDiv.innerHTML = `<p>${text}</p><span class="timer"></span>`;
+    feed.prepend(postDiv);
+
+    const timerSpan = postDiv.querySelector('.timer');
+
+    const interval = setInterval(() => {
+        const timeLeft = Math.round((expiryTime - Date.now()) / 1000);
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            postDiv.remove();
+            removePostFromStorage(expiryTime); // Clean up memory
+        } else {
+            timerSpan.innerText = `Expires in ${timeLeft}s`;
+        }
+    }, 1000);
+}*/
+
+function removePostFromStorage(expiryTime) {
+    let posts = JSON.parse(localStorage.getItem('post-card')) || [];
+    posts = posts.filter(p => p.expiryTime !== expiryTime);
+    localStorage.setItem('post-card', JSON.stringify(posts));
+}
 
     const imageHTML = post.image ? `<img src="${post.image}" alt="Post image" class="post-image">` : '';
 
@@ -59,6 +107,7 @@ function createPostCard(post) {
     `;
 
     return postCard;
+
 }
 
 // Load suggested users
@@ -277,5 +326,4 @@ if (searchInput) {
                 this.value = '';
             }
         }
-    });
-}
+    })};
