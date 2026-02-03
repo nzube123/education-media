@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SocialHub</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/settings.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">SocialHub</a></div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="nav-icon">🏠 Home</a>
+                <a href="explore.html" class="nav-icon">🔍 Explore</a>
+                <a href="notifications.html" class="nav-icon">🔔 Notifications</a>
+                <a href="messages.html" class="nav-icon">💬 Messages</a>
+                <a href="profile.html" class="nav-icon">👤 Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container settings-container">
+        <!-- Left Sidebar - Settings Menu -->
+        <aside class="settings-sidebar">
+            <div class="settings-menu">
+                <h3>Settings</h3>
+                <button class="settings-menu-item active" data-section="account">
+                    👤 Account
+                </button>
+                <button class="settings-menu-item" data-section="privacy">
+                    🔒 Privacy & Safety
+                </button>
+                <button class="settings-menu-item" data-section="notifications">
+                    🔔 Notifications
+                </button>
+                <button class="settings-menu-item" data-section="appearance">
+                    🎨 Appearance
+                </button>
+                <button class="settings-menu-item" data-section="blocked">
+                    🚫 Blocked Users
+                </button>
+                <button class="settings-menu-item" data-section="about">
+                    ℹ️ About
+                </button>
+            </div>
+        </aside>
+
+        <!-- Settings Content -->
+        <main class="settings-content">
+            <!-- Account Settings -->
+            <div id="account-section" class="settings-section active">
+                <h1>Account Settings</h1>
+                <div class="settings-group">
+                    <label>Email Address</label>
+                    <input type="email" value="john@example.com" readonly>
+                    <button class="edit-setting-btn">Change Email</button>
+                </div>
+                <div class="settings-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="+1 (555) 000-0000">
+                    <button class="save-setting-btn">Save</button>
+                </div>
+                <div class="settings-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••">
+                    <button class="edit-setting-btn">Change Password</button>
+                </div>
+                <div class="settings-group danger-zone">
+                    <label>Deactivate Account</label>
+                    <p>Once you deactivate your account, there is no going back. Please be certain.</p>
+                    <button class="danger-btn">Deactivate Account</button>
+                </div>
+            </div>
+
+            <!-- Privacy Settings -->
+            <div id="privacy-section" class="settings-section">
+                <h1>Privacy & Safety</h1>
+                <div class="toggle-group">
+                    <div class="toggle-item">
+                        <label>Private Account</label>
+                        <p>Only people you approve can see your posts and profile</p>
+                        <input type="checkbox" class="toggle-checkbox">
+                    </div>
+                    <div class="toggle-item">
+                        <label>Allow Messages from Anyone</label>
+                        <p>Let anyone message you, even if you're not following them</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>Show Active Status</label>
+                        <p>Let others see when you're online</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>Allow Tagged Photos</label>
+                        <p>Automatically add photos where you've been tagged</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div id="notifications-section" class="settings-section">
+                <h1>Notification Preferences</h1>
+                <div class="toggle-group">
+                    <div class="toggle-item">
+                        <label>Likes</label>
+                        <p>Get notified when someone likes your post</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>Comments</label>
+                        <p>Get notified when someone comments on your post</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>New Followers</label>
+                        <p>Get notified when someone follows you</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>Messages</label>
+                        <p>Get notified when you receive a new message</p>
+                        <input type="checkbox" class="toggle-checkbox" checked>
+                    </div>
+                    <div class="toggle-item">
+                        <label>Email Notifications</label>
+                        <p>Receive email notifications for important activity</p>
+                        <input type="checkbox" class="toggle-checkbox">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Settings -->
+            <div id="appearance-section" class="settings-section">
+                <h1>Appearance</h1>
+                <div class="appearance-group">
+                    <label>Theme</label>
+                    <div class="theme-options">
+                        <button class="theme-option active">☀️ Light</button>
+                        <button class="theme-option">🌙 Dark</button>
+                        <button class="theme-option">🔄 Auto</button>
+                    </div>
+                </div>
+                <div class="appearance-group">
+                    <label>Font Size</label>
+                    <div class="font-options">
+                        <button class="font-option">Small</button>
+                        <button class="font-option active">Normal</button>
+                        <button class="font-option">Large</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocked Users -->
+            <div id="blocked-section" class="settings-section">
+                <h1>Blocked Users</h1>
+                <div id="blocked-users" class="blocked-list">
+                    <p class="empty-message">You haven't blocked anyone yet</p>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div id="about-section" class="settings-section">
+                <h1>About SocialHub</h1>
+                <div class="about-info">
+                    <div class="info-item">
+                        <label>Version</label>
+                        <p>1.0.0</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Last Updated</label>
+                        <p>January 29, 2026</p>
+                    </div>
+                    <div class="info-item">
+                        <a href="#" class="info-link">Privacy Policy</a>
+                        <a href="#" class="info-link">Terms of Service</a>
+                        <a href="#" class="info-link">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="settings-help">
+            <div class="help-box">
+                <h3>Need Help?</h3>
+                <p>Check our help center for answers to common questions</p>
+                <a href="#" class="help-link">Visit Help Center</a>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/js/settings.js"></script>
+</body>
+</html>

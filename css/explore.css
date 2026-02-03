@@ -1,0 +1,121 @@
+/* Explore Page Styles */
+
+.explore-filters {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.explore-filters h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.category-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.category-btn:last-child {
+    margin-bottom: 0;
+}
+
+.category-btn:hover {
+    background-color: var(--background-color);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.explore-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+}
+
+.explore-header h1 {
+    font-size: 28px;
+}
+
+.sort-options {
+    display: flex;
+    gap: 10px;
+}
+
+.sort-btn {
+    padding: 8px 16px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.sort-btn:hover {
+    border-color: var(--primary-color);
+}
+
+.sort-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+#explore-feed {
+    max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .left-sidebar {
+        display: none;
+    }
+
+    .right-sidebar {
+        display: none;
+    }
+
+    .explore-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-header h1 {
+        font-size: 24px;
+    }
+
+    .sort-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
