@@ -64,6 +64,7 @@ function createPostCard(post) {
     }, 1000);
 }*/
 
+
 function removePostFromStorage(expiryTime) {
     let posts = JSON.parse(localStorage.getItem('post-card')) || [];
     posts = posts.filter(p => p.expiryTime !== expiryTime);
@@ -87,7 +88,7 @@ function removePostFromStorage(expiryTime) {
         </div>
         <div class="post-stats">
             <span class="stat-item"><strong>${post.likes}</strong> Likes</span>
-            <span class="stat-item"><strong>${post.comments}</strong> Comments</span>
+            <span class="stat-item"><strong>${post.comments.length}</strong> Comments</span>
             <span class="stat-item"><strong>${post.shares}</strong> Shares</span>
         </div>
         <div class="post-actions-bar">
@@ -103,6 +104,13 @@ function removePostFromStorage(expiryTime) {
                 <span>↗️</span>
                 <span>Share</span>
             </button>
+        </div>
+        <div class="comment-section" id="comment-section-${post.id}" style="display: none;">
+            <div class="comments-list">
+                ${post.comments.map(c => `<div class="comment">${c.avatar}<strong>${c.author}:</strong> ${c.text}</div>`).join('')}
+            </div>
+            <input type="text" class="comment-input" placeholder="Add a comment..." data-post-id="${post.id}">
+            <button class="submit-comment-btn" data-post-id="${post.id}">Comment</button>
         </div>
     `;
 
@@ -159,6 +167,9 @@ function setupEventListeners() {
         if (e.target.closest('.follow-btn')) {
             handleFollow(e);
         }
+        if (e.target.closest('.submit-comment-btn')) {
+            handleSubmitComment(e);
+        }
     });
 
     // Post input
@@ -193,7 +204,7 @@ function handleCreatePost() {
         content: content,
         image: null,
         likes: 0,
-        comments: 0,
+        comments: [],
         shares: 0,
         liked: false
     };
@@ -239,7 +250,29 @@ function handleLike(e) {
 function handleComment(e) {
     const commentBtn = e.target.closest('.comment-btn');
     const postId = commentBtn.dataset.postId;
-    showNotification('Comment feature will be available soon!');
+    const commentSection = document.getElementById(`comment-section-${postId}`);
+    if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+        commentSection.style.display = 'block';
+    } else {
+        commentSection.style.display = 'none';
+    }
+}
+
+// Handle submit comment
+function handleSubmitComment(e) {
+    const btn = e.target.closest('.submit-comment-btn');
+    const postId = btn.dataset.postId;
+    const input = document.querySelector(`.comment-input[data-post-id="${postId}"]`);
+    const commentText = input.value;
+    if (commentText) {
+        const post = placeholderPosts.find(p => p.id == postId);
+        post.comments.push({ avatar: '👨‍🎯', author: 'You', text: commentText });
+        updatePostStats(postId, post);
+        input.value = '';
+        // Update the comments list
+        const commentsList = document.querySelector(`#comment-section-${postId} .comments-list`);
+        commentsList.innerHTML += `<div class="comment"><strong>👨‍🎯You:</strong> ${commentText}</div>`;
+    }
 }
 
 // Handle share button
@@ -282,7 +315,7 @@ function updatePostStats(postId, post) {
         const statsDiv = postCard.querySelector('.post-stats');
         statsDiv.innerHTML = `
             <span class="stat-item"><strong>${post.likes}</strong> Likes</span>
-            <span class="stat-item"><strong>${post.comments}</strong> Comments</span>
+            <span class="stat-item"><strong>${post.comments.length}</strong> Comments</span>
             <span class="stat-item"><strong>${post.shares}</strong> Shares</span>
         `;
     }
