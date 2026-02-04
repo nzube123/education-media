@@ -11,7 +11,7 @@ const placeholderPosts = [
         likes: 234,
         comments: [
             { author: "confidence", avatar: '👨‍🎯', text: 'Hands to Hold is the best'},
-            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is very good on bed'},
+            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is my one and only'},
             { author: "solomon", avatar: '👨‍🎯', text: 'My name is solomon'},
             { author: "theophilus", avatar: '👨‍🎯', text: 'Destiny is my number one'}
         ],
@@ -29,7 +29,7 @@ const placeholderPosts = [
         likes: 567,
         comments: [
             { author: "confidence", avatar: '👨‍🎯', text: 'Hands to Hold is the best'},
-            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is very good on bed'},
+            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is my one and only'},
             { author: "solomon", avatar: '👨‍🎯', text: 'My name is solomon'},
             { author: "theophilus", avatar: '👨‍🎯', text: 'Destiny is my number one'}
         ],
@@ -47,7 +47,7 @@ const placeholderPosts = [
         likes: 1203,
         comments: [
             { author: "confidence", avatar: '👨‍🎯', text: 'Hands to Hold is the best'},
-            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is very good on bed'},
+            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is my one and only'},
             { author: "solomon", avatar: '👨‍🎯', text: 'My name is solomon'},
             { author: "theophilus", avatar: '👨‍🎯', text: 'Destiny is my number one'}
         ],
@@ -65,7 +65,7 @@ const placeholderPosts = [
         likes: 445,
         comments: [
             { author: "confidence", avatar: '👨‍🎯', text: 'Hands to Hold is the best'},
-            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is very good on bed'},
+            { author: "queen", avatar: '👨‍🎯', text: 'Theophilus is my one and only'},
             { author: "solomon", avatar: '👨‍🎯', text: 'My name is solomon'},
             { author: "theophilus", avatar: '👨‍🎯', text: 'Destiny is my number one'}
         ],
