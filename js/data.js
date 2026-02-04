@@ -51,7 +51,7 @@ const placeholderPosts = [
             { author: "solomon", avatar: '👨‍🎯', text: 'My name is solomon'},
             { author: "theophilus", avatar: '👨‍🎯', text: 'Destiny is my number one'}
         ],
-        shares: 89
+        shares: 89,
         liked: false
     },
     {
