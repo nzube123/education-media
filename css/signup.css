@@ -40,10 +40,10 @@ h1 {
     border-color: #007BFF;
     outline: none;
 }
-.signup-container button {
+.signup-container button {  
+    background-color: #007BFF;
     width: 100%;
     padding: 15px;
-    background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 5px;
