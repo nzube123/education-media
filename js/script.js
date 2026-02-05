@@ -1,42 +1,13 @@
-
-placeholderPosts = JSON.parse(localStorage.getItem('myAppPosts')) || [
-    {
-        id: 1,
-        author: "Default User",
-        handle: "@default",
-        avatar: "👤",
-        timestamp: "Joined",
-        content: "Welcome to SocialHub! Your posts will now persist after a page reload.",
-        image: null,
-        likes: 0,
-        comments: [],
-        shares: 0,
-        liked: false
-    }
-];
-
-// Suggested users fallback if data.js is missing
-const suggestedUsers = (typeof window.suggestedUsers !== 'undefined') ? window.suggestedUsers : [
-    { id: 101, name: "Jane Smith", handle: "@janes", avatar: "👩‍💻" },
-    { id: 102, name: "Tech News", handle: "@technews", avatar: "📡" }
-];
-
-// Initialize app
+// Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     loadFeed();
     loadSuggestions();
     setupEventListeners();
 });
 
-// Save to LocalStorage
-function saveToStorage() {
-    localStorage.setItem('myAppPosts', JSON.stringify(placeholderPosts));
-}
-
-// Load feed to UI
+// Load posts from placeholder data
 function loadFeed() {
     const feedContainer = document.getElementById('feed-container');
-    if (!feedContainer) return;
     feedContainer.innerHTML = '';
 
     placeholderPosts.forEach(post => {
@@ -45,11 +16,60 @@ function loadFeed() {
     });
 }
 
-// Create individual post card
+  
+
+// Create a post card element
 function createPostCard(post) {
     const postCard = document.createElement('div');
-    postCard.className = 'post-card'; // Ensure this matches your CSS
+    postCard.className = 'post-card';
     postCard.dataset.postId = post.id;
+    
+   /* window.onload = function() {
+    const savedPosts = JSON.parse(localStorage.getItem('post-card')) || [];
+    const now = Date.now();
+    
+    const activePosts = savedPosts.filter(post => post.expiryTime > now);
+
+    localStorage.setItem('post-card', JSON.stringify(activePosts));
+    activePosts.forEach(post => displayPost(post.text, post.expiryTime));
+};
+    function createPost() {
+    const postText = document.getElementById('postInput').value;
+    const duration = parseInt(document.getElementById('duration').value);
+    const expiryTime = Date.now() + (duration * 1000);
+    const savedPosts = JSON.parse(localStorage.getItem('post-card')) || [];
+    savedPosts.push({ text: postText, expiryTime: expiryTime });
+    localStorage.setItem('post-card', JSON.stringify(savedPosts));
+    displayPost(postText, expiryTime);
+}
+    function displayPost(text, expiryTime) {
+    const feed = document.getElementById('feed');
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post';
+    postDiv.innerHTML = `<p>${text}</p><span class="timer"></span>`;
+    feed.prepend(postDiv);
+
+    const timerSpan = postDiv.querySelector('.timer');
+
+    const interval = setInterval(() => {
+        const timeLeft = Math.round((expiryTime - Date.now()) / 1000);
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            postDiv.remove();
+            removePostFromStorage(expiryTime); // Clean up memory
+        } else {
+            timerSpan.innerText = `Expires in ${timeLeft}s`;
+        }
+    }, 1000);
+}*/
+
+
+function removePostFromStorage(expiryTime) {
+    let posts = JSON.parse(localStorage.getItem('post-card')) || [];
+    posts = posts.filter(p => p.expiryTime !== expiryTime);
+    localStorage.setItem('post-card', JSON.stringify(posts));
+}
 
     const imageHTML = post.image ? `<img src="${post.image}" alt="Post image" class="post-image">` : '';
 
@@ -72,60 +92,115 @@ function createPostCard(post) {
             <span class="stat-item"><strong>${post.shares}</strong> Shares</span>
         </div>
         <div class="post-actions-bar">
-            <button class="action-btn like-btn ${post.liked ? 'liked' : ''}" data-post-id="${post.id}">
-                <span>❤️ Like</span>
+            <button class="action-btn like-btn" data-post-id="${post.id}">
+                <span>❤️</span>
+                <span>Like</span>
             </button>
             <button class="action-btn comment-btn" data-post-id="${post.id}">
-                <span>💬 Comment</span>
+                <span>💬</span>
+                <span>Comment</span>
             </button>
             <button class="action-btn share-btn" data-post-id="${post.id}">
-                <span>↗️ Share</span>
+                <span>↗️</span>
+                <span>Share</span>
             </button>
         </div>
-        <div class="comment-section" id="comment-section-${post.id}" style="display: none; padding: 10px; border-top: 1px solid #eee;">
+        <div class="comment-section" id="comment-section-${post.id}" style="display: none;">
             <div class="comments-list">
-                ${post.comments.map(c => `<div class="comment" style="margin-bottom: 5px;"><strong>${c.author}:</strong> ${c.text}</div>`).join('')}
+                ${post.comments.map(c => `<div class="comment">${c.avatar}<strong>${c.author}:</strong> ${c.text}</div>`).join('')}
             </div>
-            <div style="display: flex; margin-top: 10px;">
-                <input type="text" class="comment-input" placeholder="Add a comment..." data-post-id="${post.id}" style="flex: 1; margin-right: 5px;">
-               <button class="submit-comment-btn" data-post-id="${post.id}">Send</button>
-            </div>
+            <input type="text" class="comment-input" placeholder="Add a comment..." data-post-id="${post.id}">
+            <button class="submit-comment-btn" data-post-id="${post.id}">Comment</button>
         </div>
     `;
+
     return postCard;
+
 }
 
-// Event Listeners
-function setupEventListeners() {
-    const postBtn = document.getElementById('postBtn');
-    if (postBtn) postBtn.addEventListener('click', handleCreatePost);
+// Load suggested users
+function loadSuggestions() {
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    suggestionsContainer.innerHTML = '';
 
-    // Delegation for dynamic elements
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.like-btn')) handleLike(e);
-        if (e.target.closest('.comment-btn')) handleComment(e);
-        if (e.target.closest('.share-btn')) handleShare(e);
-        if (e.target.closest('.submit-comment-btn')) handleSubmitComment(e);
-        if (e.target.closest('.follow-btn')) handleFollow(e);
+    suggestedUsers.forEach(user => {
+        const suggestionCard = createSuggestionCard(user);
+        suggestionsContainer.appendChild(suggestionCard);
     });
 }
 
-// Post Creation
+// Create a suggestion card element
+function createSuggestionCard(user) {
+    const suggestionCard = document.createElement('div');
+    suggestionCard.className = 'suggestion-card';
+    suggestionCard.dataset.userId = user.id;
+
+    suggestionCard.innerHTML = `
+        <div class="suggestion-avatar">${user.avatar}</div>
+        <div class="suggestion-info">
+            <div class="suggestion-name">${user.name}</div>
+            <div class="suggestion-handle">${user.handle}</div>
+        </div>
+        <button class="follow-btn" data-user-id="${user.id}">Follow</button>
+    `;
+
+    return suggestionCard;
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // Post button
+    const postBtn = document.getElementById('postBtn');
+    postBtn.addEventListener('click', handleCreatePost);
+
+    // Like buttons
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.like-btn')) {
+            handleLike(e);
+        }
+        if (e.target.closest('.comment-btn')) {
+            handleComment(e);
+        }
+        if (e.target.closest('.share-btn')) {
+            handleShare(e);
+        }
+        if (e.target.closest('.follow-btn')) {
+            handleFollow(e);
+        }
+        if (e.target.closest('.submit-comment-btn')) {
+            handleSubmitComment(e);
+        }
+    });
+
+    // Post input
+    const postInput = document.querySelector('.post-input');
+    postInput.addEventListener('focus', function() {
+        this.style.minHeight = '60px';
+    });
+
+    postInput.addEventListener('blur', function() {
+        if (this.value === '') {
+            this.style.minHeight = 'auto';
+        }
+    });
+}
+
+// Handle creating a new post
 function handleCreatePost() {
     const postInput = document.querySelector('.post-input');
     const content = postInput.value.trim();
 
-    if (!content) {
-        alert('Please write something!');
+    if (content === '') {
+        alert('Please write something to post!');
         return;
     }
 
     const newPost = {
-        id: Date.now(), // Unique ID
+        id: placeholderPosts.length + 1,
         author: "John Doe",
         handle: "@johndoe",
         avatar: "👤",
-        timestamp: "Just now",
+        timestamp: "now",
         content: content,
         image: null,
         likes: 0,
@@ -134,64 +209,111 @@ function handleCreatePost() {
         liked: false
     };
 
+    // Add new post to the beginning of the array
     placeholderPosts.unshift(newPost);
-    saveToStorage();
+
+    // Clear input
     postInput.value = '';
+    postInput.style.minHeight = 'auto';
+
+    // Reload feed
     loadFeed();
-    showNotification('Post shared!');
+
+    // Show success message
+    showNotification('Post published successfully!');
 }
 
+// Handle like button
 function handleLike(e) {
-    const btn = e.target.closest('.like-btn');
-    const postId = btn.dataset.postId;
+    const likeBtn = e.target.closest('.like-btn');
+    const postId = likeBtn.dataset.postId;
     const post = placeholderPosts.find(p => p.id == postId);
 
     if (post) {
         post.liked = !post.liked;
-        post.likes += post.liked ? 1 : -1;
-        btn.classList.toggle('liked', post.liked);
-        saveToStorage();
+        if (post.liked) {
+            post.likes++;
+            likeBtn.classList.add('active');
+            likeBtn.classList.add('liked');
+        } else {
+            post.likes--;
+            likeBtn.classList.remove('active');
+            likeBtn.classList.remove('liked');
+        }
+
+        // Update the post stats
         updatePostStats(postId, post);
     }
 }
 
+// Handle comment button
 function handleComment(e) {
-    const btn = e.target.closest('.comment-btn');
-    const section = document.getElementById(`comment-section-${btn.dataset.postId}`);
-    section.style.display = (section.style.display === 'none') ? 'block' : 'none';
+    const commentBtn = e.target.closest('.comment-btn');
+    const postId = commentBtn.dataset.postId;
+    const commentSection = document.getElementById(`comment-section-${postId}`);
+    if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+        commentSection.style.display = 'block';
+    } else {
+        commentSection.style.display = 'none';
+    }
 }
 
+// Handle submit comment
 function handleSubmitComment(e) {
     const btn = e.target.closest('.submit-comment-btn');
     const postId = btn.dataset.postId;
     const input = document.querySelector(`.comment-input[data-post-id="${postId}"]`);
-    const text = input.value.trim();
-
-    if (text) {
+    const commentText = input.value;
+    if (commentText) {
         const post = placeholderPosts.find(p => p.id == postId);
-        post.comments.push({ author: "You", text: text });
-        saveToStorage();
+        post.comments.push({ avatar: '👨‍🎯', author: 'You', text: commentText });
+        updatePostStats(postId, post);
         input.value = '';
-        loadFeed(); // Refresh to show new comment
+        // Update the comments list
+        const commentsList = document.querySelector(`#comment-section-${postId} .comments-list`);
+        commentsList.innerHTML += `<div class="comment"><strong>👨‍🎯You:</strong> ${commentText}</div>`;
     }
 }
 
 // Handle share button
 function handleShare(e) {
     const shareBtn = e.target.closest('.share-btn');
-    const post = placeholderPosts.find(p => p.id == shareBtn.dataset.postId);
+    const postId = shareBtn.dataset.postId;
+    const post = placeholderPosts.find(p => p.id == postId);
+
     if (post) {
         post.shares++;
-        saveToStorage();
-        updatePostStats(shareBtn.dataset.postId, post);
-        showNotification('Shared to your profile!');
+        updatePostStats(postId, post);
+        showNotification('Post shared successfully!');
     }
 }
 
+// Handle follow button
+function handleFollow(e) {
+    const followBtn = e.target.closest('.follow-btn');
+    const userId = followBtn.dataset.userId;
+    const user = suggestedUsers.find(u => u.id == userId);
+
+    if (user) {
+        user.following = !user.following;
+        if (user.following) {
+            followBtn.textContent = 'Following';
+            followBtn.classList.add('following');
+            showNotification(`You're now following ${user.name}!`);
+        } else {
+            followBtn.textContent = 'Follow';
+            followBtn.classList.remove('following');
+            showNotification(`You unfollowed ${user.name}`);
+        }
+    }
+}
+
+// Update post stats display
 function updatePostStats(postId, post) {
-    const card = document.querySelector(`[data-post-id="${postId}"]`);
-    if (card) {
-        card.querySelector('.post-stats').innerHTML = `
+    const postCard = document.querySelector(`[data-post-id="${postId}"]`);
+    if (postCard) {
+        const statsDiv = postCard.querySelector('.post-stats');
+        statsDiv.innerHTML = `
             <span class="stat-item"><strong>${post.likes}</strong> Likes</span>
             <span class="stat-item"><strong>${post.comments.length}</strong> Comments</span>
             <span class="stat-item"><strong>${post.shares}</strong> Shares</span>
@@ -199,31 +321,42 @@ function updatePostStats(postId, post) {
     }
 }
 
-function loadSuggestions() {
-    const container = document.getElementById('suggestions-container');
-    if (!container) return;
-    container.innerHTML = suggestedUsers.map(user => `
-        <div class="suggestion-item" style="display: flex; align-items: center; margin-bottom: 10px;">
-            <div style="margin-right: 10px;">${user.avatar}</div>
-            <div style="flex: 1;">
-                <div style="font-weight: bold;">${user.name}</div>
-                <div style="font-size: 0.8em; color: #666;">${user.handle}</div>
-            </div>
-            <button class="follow-btn" style="padding: 2px 8px;">Follow</button>
-        </div>
-    `).join('');
+// Show notification
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #1DA1F2;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+    `;
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
 }
 
-function handleFollow(e) {
-    const btn = e.target.closest('.follow-btn');
-    btn.textContent = btn.textContent === 'Follow' ? 'Following' : 'Follow';
-    btn.style.background = btn.textContent === 'Following' ? '#eee' : '';
-}
-
-function showNotification(msg) {
-    const note = document.createElement('div');
-    note.style.cssText = "position:fixed; bottom:20px; right:20px; background:#1DA1F2; color:white; padding:10px 20px; border-radius:50px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:9999;";
-    note.textContent = msg;
-    document.body.appendChild(note);
-    setTimeout(() => note.remove(), 3000);
-}
+// Search functionality (basic)
+const searchInput = document.querySelector('.nav-search input');
+if (searchInput) {
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = this.value.trim();
+            if (query) {
+                showNotification(`Searching for "${query}"...`);
+                this.value = '';
+            }
+        }
+    })};
