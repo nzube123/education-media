@@ -213,7 +213,7 @@ body {
     min-height: 100vh;
 }
 
-.create-post {
+.post-card {
     background-color: var(--white);
     border: 1px solid var(--border-color);
     border-radius: 15px;
