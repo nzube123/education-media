@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     setupTabNavigation();
+    loadUserProfile();
     loadUserPosts();
     loadSuggestions();
     setupProfileInteractions();
@@ -142,17 +143,70 @@ function createSuggestionCard(user) {
     return suggestionCard;
 }
 
-// Setup profile interactions
-function setupProfileInteractions() {
-    // Edit profile button
-    const editBtn = document.querySelector('.edit-profile-btn');
-    if (editBtn) {
-        editBtn.addEventListener('click', function() {
-            alert('Edit profile functionality will be available soon!');
-        });
+// Load user profile from localStorage and apply to UI
+function loadUserProfile() {
+    const defaultProfile = {
+        name: 'John Doe',
+        handle: '@johndoe',
+        bio: 'Full-stack developer | Tech enthusiast | Coffee lover ☕ | Always learning something new',
+        location: 'San Francisco, CA',
+        website: 'www.johndoe.com',
+        avatar: '👤',
+        joined: 'Joined March 2020'
+    };
+
+    let stored = null;
+    try {
+        stored = JSON.parse(localStorage.getItem('userProfile'));
+    } catch (e) {
+        stored = null;
     }
 
-    // Like buttons
+    const profile = Object.assign({}, defaultProfile, stored || {});
+    updateProfileUI(profile);
+}
+
+function updateProfileUI(profile) {
+    const nameEl = document.querySelector('.profile-name-section h1');
+    const handleEl = document.querySelector('.profile-handle');
+    const bioEl = document.querySelector('.profile-bio');
+    const metaEl = document.querySelector('.profile-meta');
+    const avatarEl = document.querySelector('.profile-avatar-large');
+
+    if (nameEl) nameEl.textContent = profile.name;
+    if (handleEl) handleEl.textContent = profile.handle;
+    if (bioEl) bioEl.textContent = profile.bio;
+    if (metaEl) {
+        metaEl.innerHTML = '';
+        if (profile.location) metaEl.innerHTML += `<span>📍 ${profile.location}</span>`;
+        if (profile.website) metaEl.innerHTML += `<span>🔗 ${profile.website}</span>`;
+        if (profile.joined) metaEl.innerHTML += `<span>📅 ${profile.joined}</span>`;
+    }
+    if (avatarEl) {
+        // If avatar looks like a URL, use an image tag, otherwise show emoji/text
+        if (/^https?:\/\//i.test(profile.avatar)) {
+            avatarEl.innerHTML = `<img src="${profile.avatar}" alt="avatar" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+        } else {
+            avatarEl.textContent = profile.avatar || '👤';
+        }
+    }
+}
+
+// Setup profile interactions (navigate to edit page and reuse existing interactions)
+function setupProfileInteractions() {
+    // Make both the header/profile action edit button and sidebar edit button navigate to edit page
+    const headerEditBtn = document.querySelector('.edit-btn');
+    const sidebarEditBtn = document.querySelector('.edit-profile-btn');
+
+    [headerEditBtn, sidebarEditBtn].forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', function() {
+                window.location.href = 'Edit.html';
+            });
+        }
+    });
+
+    // Like and follow handlers
     document.addEventListener('click', function(e) {
         if (e.target.closest('.like-btn')) {
             handleLike(e);
