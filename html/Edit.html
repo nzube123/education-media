@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - SocialHub</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">SocialHub</a></div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="nav-icon">🏠 Home</a>
+                <a href="explore.html" class="nav-icon">🔍 Explore</a>
+                <a href="notifications.html" class="nav-icon">🔔 Notifications</a>
+                <a href="messages.html" class="nav-icon">💬 Messages</a>
+                <a href="profile.html" class="nav-icon active">👤 Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Edit Profile Form -->
+    <div class="main-container" style="grid-template-columns: 1fr; max-width: 900px;">
+        <main class="feed">
+            <div class="edit-profile-form">
+                <h2>Edit Profile</h2>
+                <form id="editProfileForm">
+                    <div class="form-row">
+                        <label for="nameInput">Display name</label>
+                        <input id="nameInput" type="text" name="name" placeholder="Name">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="mailinput">E-mail</label>
+                        <input id="mailInput" type="text" name="mail" placeholder="@gmail.com">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="bioInput">Bio</label>
+                        <textarea id="bioInput" rows="4" placeholder="Tell people about yourself..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="locationInput">Location</label>
+                        <input id="locationInput" type="text" name="location" placeholder="Block industry, Kurudu, Abuja.">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="websiteInput">Website</label>
+                        <input id="websiteInput" type="text" name="website" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="avatarInput">Avatar (emoji or image URL)</label>
+                        <input id="avatarInput" type="text" name="avatar" placeholder="👤 or https://...">
+                        <div class="avatar-preview" id="avatarPreview">👤</div>
+                    </div>
+
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <button type="submit" class="save-btn">Save</button>
+                        <button type="button" id="cancelBtn" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/edit.js"></script>
+</body>
+</html>
