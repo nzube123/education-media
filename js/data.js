@@ -131,3 +131,41 @@ const suggestedUsers = [
 ];
 
 
+const Users = [
+    {
+        id: 1,
+        name: "Confidence",
+        avatar: "👨‍🎯",
+        followers: "450",
+        following: "690",
+        posts: placeholderPosts,
+        userName: "@ndu4chicon"
+    },
+    {
+        id: 2,
+        name: "Confidence",
+        avatar: "👨‍🎯",
+        followers: "450",
+        following: "690",
+        posts: placeholderPosts,
+        userName: "@ndu4chicon"
+    },
+    {
+        id: 3,
+        name: "Confidence",
+        avatar: "👨‍🎯",
+        followers: "450",
+        following: "690",
+        posts: placeholderPosts,
+        userName: "@ndu4chicon"
+    },
+    {
+        id: 4,
+        name: "Confidence",
+        avatar: "👨‍🎯",
+        followers: "450",
+        following: "690",
+        posts: placeholderPosts,
+        userName: "@ndu4chicon"
+    },
+]
