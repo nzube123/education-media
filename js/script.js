@@ -10,10 +10,13 @@ function loadFeed() {
     const feedContainer = document.getElementById('feed-container');
     feedContainer.innerHTML = '';
 
-    placeholderPosts.forEach(post => {
-        const postCard = createPostCard(post);
-        feedContainer.appendChild(postCard);
-    });
+
+    Users.map((user) => {
+        user.posts.forEach(post => {
+            const postCard = createPostCard(post);
+            feedContainer.appendChild(postCard);
+        })
+    })
 }
 
   
