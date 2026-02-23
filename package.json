@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "education-media",
   "version": "1.0.0",
   "description": "This project is made for hands to hold academy student in other for ss3 syudent old and present to be able to \r link up with their classmates",
@@ -247,5 +248,17 @@
     "autoprefixer": "^10.4.24",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18"
+=======
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "@types/pg": "^8.16.0",
+    "prisma": "^7.4.0",
+    "tsx": "^4.21.0"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.0",
+    "@prisma/client": "^7.4.0",
+    "pg": "^8.18.0"
+>>>>>>> aab2959c5872ebfdcaad4538f792e0cf480c61c7
   }
 }

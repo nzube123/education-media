@@ -139,7 +139,8 @@ const Users = [
         followers: "450",
         following: "690",
         posts: placeholderPosts,
-        userName: "@ndu4chicon"
+        userName: "@ndu4chicon",
+        password: "starboy"
     },
     {
         id: 2,
@@ -148,7 +149,8 @@ const Users = [
         followers: "450",
         following: "690",
         posts: placeholderPosts,
-        userName: "@ndu4chicon"
+        userName: "@ndu4chicon",
+        passowrd: "password"
     },
     {
         id: 3,

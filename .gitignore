@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 /node_modules
+=======
+/node_modules
+/generated/prisma
+>>>>>>> aab2959c5872ebfdcaad4538f792e0cf480c61c7
