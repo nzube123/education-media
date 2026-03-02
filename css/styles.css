@@ -12,6 +12,7 @@
     --background-color: #f7f9fa;
     --white: #ffffff;
     --text-color: #0f1419;
+    --brand-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 body {
@@ -816,4 +817,37 @@ body {
 .modal-signup-link a:hover {
     color: #1a8cd8;
     text-decoration: underline;
+}
+
+/* Apply brand gradient to all button-like controls */
+button,
+.button,
+.btn,
+input[type="button"],
+input[type="submit"],
+.modal-btn,
+.modal-btn-primary,
+.login-button,
+.signup-button,
+.save-btn,
+.edit-profile-btn,
+.follow-btn,
+.post-action-btn,
+.category-btn,
+.sort-btn,
+#postBtn,
+.submit-comment-btn,
+.edit-btn,
+.share-btn,
+.cancel-btn,
+.back-button {
+    background: var(--brand-gradient) !important;
+    color: var(--white) !important;
+    border: none !important;
+}
+
+.modal-btn-secondary,
+.back-button,
+.cancel-btn {
+    color: var(--white) !important;
 }

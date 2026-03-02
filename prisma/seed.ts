@@ -31,6 +31,14 @@ async function main() {
     })
 }
 
+
+
+export async function FindUser({email, password}: {email: string, password: string}) {
+  const findUser = await prisma.user.findUnique({
+    where: {email: email}
+  })
+}
+
 main()
   .catch((e) => {
     console.error(e);
