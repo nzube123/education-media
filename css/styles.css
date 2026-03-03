@@ -274,6 +274,16 @@ body {
     font-size: 14px;
 }
 
+/* hide the raw file input visually but keep it in the DOM for interactions */
+.hidden-file-input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
 .post-action-btn:hover {
     background-color: var(--border-color);
 }
@@ -408,6 +418,7 @@ body {
 .action-btn {
     flex: 1;
     padding: 10px;
+    margin:2rem;
     background: none;
     border: none;
     color: var(--secondary-color);

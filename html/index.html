@@ -70,7 +70,9 @@
                     <input type="text" placeholder="What's on your mind?" class="post-input">
                 </div>
                 <div class="post-actions">
-                    <input type="file" class="post-action-btn" value="Photo" name="photo" id="photo">
+                    <!-- visually hidden file input; label used to trigger dialog -->
+                    <input type="file" name="photo" id="photo" class="hidden-file-input" />
+                    <label for="photo" class="post-action-btn">Photo</label>
                     <button class="post-action-btn">😊 Emoji</button>
                     <button class="post-action-btn" id="postBtn">Post</button>
                 </div>
@@ -122,10 +124,14 @@
     <script src="/js/user.js"></script>
     
     <script>
-        // Show login modal on page load
+        // Show login modal on first page load of a session
         window.addEventListener('load', function() {
             const modal = document.getElementById('loginModalOverlay');
-            modal.style.display = 'flex';
+            // only display once per session
+            if (sessionStorage.getItem('loginModalShown') !== 'true') {
+                modal.style.display = 'flex';
+                sessionStorage.setItem('loginModalShown', 'true');
+            }
         });
 
         // Close login modal
