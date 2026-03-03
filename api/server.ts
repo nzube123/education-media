@@ -118,7 +118,8 @@ app.get("/api/user/:id", async (req: Request, res: Response) => {
     }
 
     // Don't send password in response
-    const { password, ...userWithoutPassword } = result.user;
+    const userResponse = result.user as any;
+    const { password, ...userWithoutPassword } = userResponse;
     res.json({
       success: true,
       user: userWithoutPassword,

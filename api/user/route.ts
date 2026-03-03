@@ -88,7 +88,8 @@ export async function handleGetUser(req: any) {
     }
 
     // Don't send password in response
-    const { password, ...userWithoutPassword } = result.user;
+    const userResponse = result.user as any;
+    const { password, ...userWithoutPassword } = userResponse;
     return {
       status: 200,
       user: userWithoutPassword,
